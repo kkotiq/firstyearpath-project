@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./libs/jquery.js"></script>
+    <script src="./dist/ls-manage.js" defer></script>
+    <script src="./dist/main.js" defer></script>
+    <title>Путь первака</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="./favicon/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./favicon/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="mobile-screen">
+        <p class="mobile-screen__message">
+            Привет! <br><br>Проходить квест «Путь первака» с мобильной версии будет не очень удобно, советуем тебе воспользоваться компьютером!
+        </p>
+    </div>
+    <div class="popup-start hidden">
+        <div class="popup-start__message">
+            <p class="popup-start__message-hello">Каждый год в Вышку поступает более 7 000 человек и не всем сразу удается разобраться в непростой жизни студента. Путь первака — первый шаг к пониманию сложного мира Вышки! <br><br>
+                 Управляй контентом с помощью кнопок «Назад» и «Вперед». Когда закончишь квест, нажми на кнопку «Завершить». Перезагрузка страницы сбросит весь прогресс. <br><br>
+            </p>
+            <button class="popup-start__close">
+                Понятно
+            </button>
+        </div>
+    </div>
+    <main>
+        <div class="main-container">
+            <!-- Первое задание -->
+            <section class="task-container task-description container-first">
+                <div class="task-description__flex-wrapper">
+                    <h2 class="task-description__heading">
+                        Внеучебка
+                    </h2>
+                    <div class="task-description__text">
+                        <p>
+                            Как ты уже знаешь из задания по БЖД, в Вышке очень разнообразная внеучебная жизнь — можешь петь в Хоре, писать исследования для Научных Боёв, а можешь помогать бездомным животным. <br><br> Наше следующее задание поможет разобраться, какая из огромного списка студенческих организаций подойдет именно тебе!
+                        </p>
+                        <p class="task-description__user-points">
+                             Твои текущие баллы: <span class="user-points"></span>
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <section class="task-container container-1 hidden">
+                <ul class="container-1__question-list">
+                    <li class="question-container first">
+                        <p class="question">
+                            Все абитуриенты делают важный выбор перед поступлением. Почему ты выбрал Вышку? 
+                        </p>
+                        <form class='answers'>
+                            <label for="1-1">
+                                <input type="radio" name="first-question" id="1-1" class="point-1" required>Вышка яркая — тут самые крутые мероприятия.
+                            </label>
+                            <label for="1-2">
+                                <input type="radio" name="first-question" id="1-2" class="points-75">Вышка заботливая — тут всегда помогают студентам, вышкинское сообщество — самое сильное студенческое коммьюнити.
+                            </label>
+                            <label for="1-3">
+                                <input type="radio" name="first-question" id="1-3" class="points-5">Вышка понимающая — тут слушают студентов и готовы идти на компромиссы. 
+                            </label>
+                            <label for="1-4">
+                                <input type="radio" name="first-question" id="1-4" class="points-25">Вышка интеллектуальная — тут очень высокий уровень образования.
+                            </label>
+                        </form>
+                    </li>
+                    <li class="question-container hidden">
+                        <p class="question">
+                            Какой тип личности подходит тебе?
+                        </p>
+                        <form class="answers">
+                            <label for="2-1">
+                                <input type="radio" name="second-question" id="2-1" class="point-1" required>Креатор
+                            </label>
+                            <label for="2-2">
+                                <input type="radio" name="second-question" id="2-2" class="points-75">Экспериментатор
+                            </label>
+                            <label for="2-3">
+                                <input type="radio" name="second-question" id="2-3" class="points-5">Искатель
+                            </label>
+                            <label for="2-4">
+                                <input type="radio" name="second-question" id="2-4" class="points-25">Аналитик
+                            </label>
+                        </form>
+                    </li>
+                    <li class="question-container hidden">
+                        <p class="question">
+                            Ты комфортно чувствуешь себя на сцене? 
+                        </p>
+                        <form class="answers">
+                            <label for="3-1">
+                                <input type="radio" name="third-question" id="3-1" class="point-1" required>Я лучше буду чувствовать себя за сценой — люблю организовывать всё!
+                            </label>
+                            <label for="3-2">
+                                <input type="radio" name="third-question" id="3-2" class="points-75">Да, я настоящая звезда!
+                            </label>
+                            <label for="3-3">
+                                <input type="radio" name="third-question" id="3-3" class="points-5">Никогда не пробовал выступать, но если нужно, то готов хоть сейчас!
+                            </label>
+                            <label for="3-4">
+                                <input type="radio" name="third-question" id="3-4" class="points-25">Нет, я стесняюсь
+                            </label>
+                        </form>
+                    </li>
+                    <li class="question-container hidden">
+                        <p class="question">
+                            Какие у тебя отношения со спортом?
+                        </p>
+                        <form class="answers">
+                            <label for="4-1">
+                                <input type="radio" name="fourth-question" id="4-1" class="point-1" required>Начинаю делать упражнения каждый понедельник
+                            </label>
+                            <label for="4-2">
+                                <input type="radio" name="fourth-question" id="4-2" class="points-75">В Вышке есть спорт??
+                            </label>
+                            <label for="4-3">
+                                <input type="radio" name="fourth-question" id="4-3" class="points-5">Я каждый раз с замиранием сердца прохожу мимо Nike Box
+                            </label>
+                            <label for="4-4">
+                                <input type="radio" name="fourth-question" id="4-4" class="points-25">Очень хорошие — вступлю в Вышке в спортивный клуб и буду заниматься в зале на Покровке
+                            </label>
+                        </form>
+                    </li>
+                    <li class="question-container hidden">
+                        <p class="question">
+                            Вы с друзьями решили провести фестиваль. Чем займешься? 
+                        </p>
+                        <form class="answers">
+                            <label for="5-1">
+                                <input type="radio" name="fifth-question" id="5-1" class="point-1" required>Буду координировать процессы — люблю всем руководить!
+                            </label>
+                            <label for="5-2">
+                                <input type="radio" name="fifth-question" id="5-2" class="points-75">Я буду заниматься программой, ведь креатив — моё второе имя
+                            </label>
+                            <label for="5-3">
+                                <input type="radio" name="fifth-question" id="5-3" class="points-5">Сделаю так, чтобы о нашем фестивале узнали все!
+                            </label>
+                            <label for="5-4">
+                                <input type="radio" name="fifth-question" id="5-4" class="points-25">Сделаю лучшие фотографии и сниму отличный тизер!
+                            </label>
+                        </form>
+                    </li>
+                    <li class="question-container hidden">
+                        <p class="question">
+                            Нравится заниматься наукой?
+                        </p>
+                        <form class="answers">
+                            <label for="6-1">
+                                <input type="radio" name="sixth-question" id="6-1" class="point-1" required>Мой максимум — написать курсач! Большего не требуйте!
+                            </label>
+                            <label for="6-2">
+                                <input type="radio" name="sixth-question" id="6-2" class="points-75">Иногда я смотрю видео на Постнауке, считается? 
+                            </label>
+                            <label for="6-3">
+                                <input type="radio" name="sixth-question" id="6-3" class="points-5">Люблю ставить разные эксперименты!
+                            </label>
+                            <label for="6-4">
+                                <input type="radio" name="sixth-question" id="6-4" class="points-25">Мне интересно всё в этом мире, я настоящий исследователь, но писать академические тексты я пока не умею.
+                            </label>
+                        </form>
+                    </li>
+                    <li class="question-container hidden">
+                        <p class="question">
+                            У тебя пришло уведомление от группы ВКонтакте. Что это за группа?
+                        </p>
+                        <form class="answers">
+                            <label for="7-1">
+                                <input type="radio" name="seventh-question" id="7-1" class="point-1" required>Дайджест мероприятий недели
+                            </label>
+                            <label for="7-2">
+                                <input type="radio" name="seventh-question" id="7-2" class="points-75">Добрый мир: благотворительность, помощь и котики
+                            </label>
+                            <label for="7-3">
+                                <input type="radio" name="seventh-question" id="7-3" class="points-5">10 правил успешного бизнесмена
+                            </label>
+                            <label for="7-4">
+                                <input type="radio" name="seventh-question" id="7-4" class="points-25">Лучшие фильмы 
+                            </label>
+                        </form>
+                    </li>
+                    <li class="question-container hidden last">
+                        <button class="submit-1">
+                            ПОЛУЧИТЬ РЕЗУЛЬТАТ
+                        </button>
+                    </li>
+                </ul>
+                <div class="button-container-first">
+                    <button class='back-first-task'>
+                        Назад
+                    </button>
+                    <button class="forward-first-task">
+                        Вперед
+                    </button>
+                </div>
+            </section>
+
+            <!-- Второе задание -->
+            <section class="task-container task-description hidden">
+                <div class="task-description__flex-wrapper">
+                    <h2 class="task-description__heading">
+                    Ожидания
+                    </h2>
+                    <div class="task-description__text">
+                        <p>
+                            У каждого первокурсника есть свои ожидания от Вышки — кто-то ждет разнообразную внеучебку, кто-то хочет посвятить себя науке, кто-то просто хочет найти новых друзей и получить диплом.<br><br> А чего ждешь ты? 
+                        </p>
+                        <p class="task-description__user-points">
+                             Твои текущие баллы: <span class="user-points"></span>
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <section class="task-container container-2 hidden">
+                <form id="ajax_form" method="POST" class="container-2__form">
+                    <p class="container-2__desc">
+                        Введи слова, которые ассоциируются у тебя с Вышкой. После квеста мы соберем "облако слов" первокурсников Вышки.
+                    </p>
+                    <input type="text" class="container-2__input" name="words-input" id="words-input" placeholder="Введи слово">
+                    <input type="submit" name="words-submit" value="Внести вклад" class="container-2__submit">
+                </form>
+            </section>
+
+            <!-- Третье задание -->
+
+            <section class="task-container task-description hidden">
+                <div class="task-description__flex-wrapper">
+                    <h2 class="task-description__heading">
+                        Здания Вышки
+                    </h2>
+                    <div class="task-description__text">
+                        <p>
+                            Учеба в Вышке — это одно большое приключение. И не только потому что тебе встретится много всего на пути! Придется попутешествовать по Москве и изучить все корпуса, начнем же сейчас! <br><br> Открывай картинки, нажимая на треугольники и угадывай, силуэт какого корпуса представлен. Чтобы проверить ответ, нажми на Enter.
+                        </p>
+                        <p class="task-description__user-points">
+                             Твои текущие баллы: <span class="user-points"></span>
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <section class="task-container container-3 hidden">
+                <div class="container-3__flex-wrapper">
+                    <ul class="container-3__list">
+                        <li class="container-3__list-item building-1">
+                            <div class="container-3__list-item-head">
+                                <input type="text" class="building-1-input" placeholder="Введи корпус">
+                                <div class="button-down"></div>
+                            </div>
+                            <div class="container-3__list-item-body hidden">
+                                <img class="container-3__list-item-img" src="./img/1b.jpg" alt="">
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="container-3__list">
+                        <li class="container-3__list-item building-2">
+                            <div class="container-3__list-item-head">
+                                <input type="text" class="building-2-input" placeholder="Введи корпус">
+                                <div class="button-down"></div>
+                            </div>
+                            <div class="container-3__list-item-body hidden">
+                                <img class="container-3__list-item-img" src="./img/2m.jpg" alt="">
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="container-3__list">
+                        <li class="container-3__list-item building-3">
+                            <div class="container-3__list-item-head">
+                                <input type="text" class="building-3-input" placeholder="Введи корпус">
+                                <div class="button-down"></div>
+                            </div>
+                            <div class="container-3__list-item-body hidden">
+                                <img class="container-3__list-item-img" src="./img/3p.jpg" alt="">
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="container-3__list">
+                        <li class="container-3__list-item building-4">
+                            <div class="container-3__list-item-head">
+                                <input type="text" class="building-4-input" placeholder="Введи корпус">
+                                <div class="button-down"></div>
+                            </div>
+                            <div class="container-3__list-item-body hidden">
+                                <img class="container-3__list-item-img" src="./img/4s.jpg" alt="">
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="container-3__list">
+                        <li class="container-3__list-item building-5">
+                            <div class="container-3__list-item-head">
+                                <input type="text" class="building-5-input" placeholder="Введи корпус">
+                                <div class="button-down"></div>
+                            </div>
+                            <div class="container-3__list-item-body hidden">
+                                <img class="container-3__list-item-img" src="./img/5h.jpg" alt="">
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!--Четвертое задание-->
+            <section class="task-container task-description hidden">
+                <div class="task-description__flex-wrapper">
+                    <h2 class="task-description__heading">
+                         ЛМС и другие проклятия
+                    </h2>
+                    <div class="task-description__text">
+                        <p>
+                            Дедлайн, сессия, зачетка... Столько новых слов нужно выучить первокурснику, а ещё же есть аббревиатуры, которые запомнить ещё сложнее. <br><br>Давай проверим, упадет ли у тебя ЛМС, словишь ли ты ИУП и пройдешь ли СОП! 
+                        </p>
+                        <p class="task-description__user-points">
+                             Твои текущие баллы: <span class="user-points"></span>
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <section class="task-container сontainer-4 hidden">
+                <div class="container-4__flex-wrapper">
+                    <ul class="abbr-list">
+                        <li class="abbr-list__item sop">
+                            <p class="abbr"> СОП — это...</p>
+                            <input type="text" placeholder="Введи ответ">
+                        </li>
+                        <li class="abbr-list__item bzd">
+                            <p class="abbr">БЖД — это...</p>
+                            <input type="text" placeholder="Введи ответ">
+                        </li>
+                        <li class="abbr-list__item lms">
+                            <p class="abbr">LMS — это...</p>
+                            <input type="text" placeholder="Введи ответ">
+                        </li>
+                        <li class="abbr-list__item iup">
+                            <p class="abbr">ИУП — это...</p>
+                            <input type="text" placeholder="Введи ответ">
+                        </li>
+                        <li class="abbr-list__item pud">
+                            <p class="abbr">ПУД — это...</p>
+                            <input type="text" placeholder="Введи ответ">
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Пятое задание -->
+
+            <section class="task-container task-description hidden">
+                <div class="task-description__flex-wrapper">
+                    <h2 class="task-description__heading">
+                         Общежитие: starter pack
+                    </h2>
+                    <div class="task-description__text">
+                        <p>
+                            University life goals — приехать к одногруппникам в Дубки! А если уже живешь в общаге, то разобраться, как выжить в этом невероятном месте. <br><br> Выбери «самое важное» и уложись в 10 000, чтобы не брать в долг у соседей на тусовки!
+                        </p>
+                        <p class="task-description__user-points">
+                             Твои текущие баллы: <span class="user-points"></span>
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <section class='task-container container-5 hidden'>
+                <div class="container-5__flex-wrapper">
+                    <ul class="elements-list">
+                        <p class="elements-list__header">
+                            Развлечения
+                        </p>
+                        <li class="element">
+                            Колонка <span class="price">1500</span>
+                        </li>
+                        <li class="element">
+                            Блестки <span class="price">400</span>
+                        </li>
+                        <li class="element">
+                            Диско-шар <span class="price">2000</span>
+                        </li>
+                        <li class="element">
+                            Фотоаппарат <span class="price">3000</span>
+                        </li>
+                        <li class="element">
+                            Настольная игра <span class="price">500</span>
+                        </li>
+                        <li class="element">
+                            Наушники <span class="price">700</span>
+                        </li>
+                    </ul>
+                    <ul class="elements-list">
+                        <p class="elements-list__header">
+                            Удобство
+                        </p>
+                        <li class="element">
+                            Кружка <span class="price">500</span>
+                        </li>
+                        <li class="element">
+                            Беруши <span class="price">100</span>
+                        </li>
+                        <li class="element">
+                            Чайник <span class="price">1000</span>
+                        </li>
+                        <li class="element">
+                            Кастрюля <span class="price">700</span>
+                        </li>
+                    </ul>
+                    <ul class="elements-list">
+                        <p class="elements-list__header">
+                            Учеба
+                        </p>
+                        <li class="element">
+                            Тетради <span class="price">200</span>
+                        </li>
+                        <li class="element">
+                            Ручки <span class="price">200</span>
+                        </li>
+                        <li class="element">
+                            Power bank <span class="price">1000</span>
+                        </li>
+                        <li class="element">
+                            Ноутбук <span class="price">4000</span>
+                        </li>
+                    </ul>
+                    <div class="container-5__bottom-counter">
+                        Цена вопроса: <span class="container-5__amount"></span>
+                    </div>
+                    <div class="container-5__bottom">
+                        <button class="container-5__submit" disabled>
+                            Затариться
+                        </button>
+                        <button class="container-5__reset">
+                            Отменить все
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Шестое задание -->
+
+            <section class="task-container task-description hidden">
+                <div class="task-description__flex-wrapper">
+                    <h2 class="task-description__heading">
+                         IELTS
+                    </h2>
+                    <div class="task-description__text">
+                        <p>
+                            Всё лето просидел в TikTok? А как тебе классические «вышкинские» песни в английском варианте? <br><br> Открывай тексты песен по клику на треугольники и оцени свои шансы сдать IELTS в конце второго курса!
+                        </p>
+                        <p class="task-description__user-points">
+                             Твои текущие баллы: <span class="user-points"></span>
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <section class="task-container container-6 hidden">
+                <div class="container-6__flex-wrapper">
+                    <ul class="container-6__list">
+                        <li class="container-6__list-item song-1">
+                            <div class="container-6__list-item-head">
+                                <input type="text" class="song-1-input" placeholder="Введи название песни">
+                                <div class="button-down"></div>
+                            </div>
+                            <div class="container-6__list-item-body hidden">
+                                <p class="container-6__song-text">
+                                    On the first day of spring<br>
+                                    At the end of the earth<br>
+                                    Accidentally we met you<br>
+                                    White snow was falling<br>
+                                    And the roses did not bloom<br>
+                                    But spring love came to us<br>
+                                    She was desperately beautiful<br>
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="container-6__list">
+                        <li class="container-6__list-item song-2">
+                            <div class="container-6__list-item-head">
+                                <input type="text" class="song-2-input" placeholder="Введи название песни">
+                                <div class="button-down"></div>
+                            </div>
+                            <div class="container-6__list-item-body hidden">
+                                <p class="container-6__song-text">
+                                    I'm so used to living by you alone, by you alone<br>
+                                    See the dawn and hear you wake up not with me<br>
+                                    It became so easy for me to breathe through the open window<br>
+                                    And tell her just one thing<br>
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="container-6__list">
+                        <li class="container-6__list-item song-3">
+                            <div class="container-6__list-item-head">
+                                <input type="text" class="song-3-input" placeholder="Введи название песни">
+                                <div class="button-down"></div>
+                            </div>
+                            <div class="container-6__list-item-body hidden">
+                                <p class="container-6__song-text">
+                                    Got fat, scattered across the country,<br>
+                                    Your body was stretched across Moscow<br>
+                                    Peter on horseback flutters your lips,<br>
+                                    Even the Louvre did not stand aside.<br>                           
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="container-6__list">
+                        <li class="container-6__list-item song-4">
+                            <div class="container-6__list-item-head">
+                                <input type="text" class="song-4-input" placeholder="Введи название песни">
+                                <div class="button-down"></div>
+                            </div>
+                            <div class="container-6__list-item-body hidden">
+                                <p class="container-6__song-text">
+                                    Warm air, fast river<br>
+                                    For three days we are with you without sleep<br>
+                                    Trust me on my words: "we will live forever"<br>
+                                    Take me weak, I promise to lose<br>
+                                    Days, weeks, no turning back<br>
+                                    We flew and lost along the way<br>
+                                    Blood, let's drink to love, take care of yourself<br>
+                                    I don't know if we'll ever meet again<br>
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="container-6__list">
+                        <li class="container-6__list-item song-5">
+                            <div class="container-6__list-item-head">
+                                <input type="text" class="song-5-input" placeholder="Введи название песни">
+                                <div class="button-down"></div>
+                            </div>
+                            <div class="container-6__list-item-body hidden">
+                                <p class="container-6__song-text">
+                                    There was a report card, but became single<br>
+                                    I almost died young<br>
+                                    I'm just wasting my prime on you, you, you, you<br>
+                                    I'm just wasting my time on you, you, you, you<br>
+                                    Time to shoot, shooting between us<br>
+                                    Pa-pa-you get into the heart, you stay there, love<br>
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!--Cедьмое задание -->
+            <section class="task-container task-description hidden">
+                <div class="task-description__flex-wrapper">
+                    <h2 class="task-description__heading">
+                         Курируйтесь
+                    </h2>
+                    <div class="task-description__text">
+                        <p>
+                            Кураторы уже провели адаптационные программы, но всё ли ты запомнил? Давай проверим тебя на знание Вышки! 
+                        </p>
+                        <p class="task-description__user-points">
+                             Твои текущие баллы: <span class="user-points"></span>
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <section class="task-container container-7 hidden">
+                <div class="quiz-container first">
+                    <p class=question>
+                        Как зовут нашего ректора? 
+                    </p>
+                    <form class="answers">
+                        <label class="quiz__option" for="quiz__1-1">
+                            <input type="radio" class="quiz__ra" name="quiz__first-question" id="quiz__1-1"> Ярослав Иванович Кузьминов
+                        </label>
+                        <label class="quiz__option" for="quiz__1-2">
+                            <input type="radio" class="quiz__wa" name="quiz__first-question" id="quiz__1-2"> Кузьма Ярославович Иванов
+                        </label>
+                        <label class="quiz__option" for="quiz__1-3">
+                            <input type="radio" class="quiz__wa" name="quiz__first-question" id="quiz__1-3"> Иван Ярославович Кузьминов
+                        </label>
+                    </form>
+                </div>
+                <div class="quiz-container hidden">
+                    <p class=question>
+                        Какие проценты скидки можно получить на платном обучении? 
+                    </p>
+                    <form class="answers">
+                        <label class="quiz__option" for="quiz__2-1">
+                            <input type="radio" class="quiz__wa" name="quiz__second-question" id="quiz__2-1"> 50, 75, 100 процентов
+                        </label>
+                        <label class="quiz__option" for="quiz__2-2">
+                            <input type="radio" class="quiz__wa" name="quiz__second-question" id="quiz__2-2"> 25, 50, 75, 100 процентов
+                        </label>
+                        <label class="quiz__option" for="quiz__2-3">
+                            <input type="radio" class="quiz__ra" name="quiz__second-question" id="quiz__2-3"> 25, 50, 75 процентов
+                        </label>
+                    </form>
+                </div>
+                <div class="quiz-container hidden">
+                    <p class=question>
+                        Какой у Вышки символ?
+                    </p>
+                    <form class="answers">
+                        <label class="quiz__option" for="quiz__3-1">
+                            <input type="radio" class="quiz__wa" name="quiz__third-question" id="quiz__3-1"> Дрозд
+                        </label>
+                        <label class="quiz__option" for="quiz__3-2">
+                            <input type="radio" class="quiz__wa" name="quiz__third-question" id="quiz__3-2"> Бобер
+                        </label>
+                        <label class="quiz__option" for="quiz__3-3">
+                            <input type="radio" class="quiz__ra" name="quiz__third-question" id="quiz__3-3"> Ворона
+                        </label>
+                    </form>
+                </div>
+                <div class="quiz-container hidden">
+                    <p class=question>
+                        Можно ли не проходить СОП?
+                    </p>
+                    <form class="answers">
+                        <label class="quiz__option" for="quiz__4-1">
+                            <input type="radio" class="quiz__wa" name="quiz__4-question" id="quiz__4-1"> Да, можно пропустить СОП и за это ничего не будет
+                        </label>
+                        <label class="quiz__option" for="quiz__4-2">
+                            <input type="radio" class="quiz__ra" name="quiz__4-question" id="quiz__4-2"> Нет, СОП обязателен
+                        </label>
+                        <label class="quiz__option" for="quiz__4-3">
+                            <input type="radio" class="quiz__wa" name="quiz__4-question" id="quiz__4-3"> Да, СОП можно не проходить, если хочется
+                        </label>
+                    </form>
+                </div>
+                <div class="quiz-container hidden">
+                    <p class=question>
+                        Красная кнопка анонимная?
+                    </p>
+                    <form class="answers">
+                        <label class="quiz__option" for="quiz__5-1">
+                            <input type="radio" class="quiz__ra" name="quiz__5-question" id="quiz__5-1"> Да, никто не видит имена заполнивших форму
+                        </label>
+                        <label class="quiz__option" for="quiz__5-2">
+                            <input type="radio" class="quiz__wa" name="quiz__5-question" id="quiz__5-2"> ФИО видит только учебный офис
+                        </label>
+                        <label class="quiz__option" for="quiz__5-3">
+                            <input type="radio" class="quiz__wa" name="quiz__5-question" id="quiz__5-3"> ФИО передают преподавателю, на которого нажали красную кнопку
+                        </label>
+                    </form>
+                </div>
+                <div class="quiz-container hidden">
+                    <p class=question>
+                        Перевестись на бюджет с коммерческой основы можно?
+                    </p>
+                    <form class="answers">
+                        <label class="quiz__option" for="quiz__6-1">
+                            <input type="radio" class="quiz__wa" name="quiz__6-question" id="quiz__6-1"> Нет, перевестись нельзя
+                        </label>
+                        <label class="quiz__option" for="quiz__6-2">
+                            <input type="radio" class="quiz__wa" name="quiz__6-question" id="quiz__6-2"> Да, если будешь хорошо учиться
+                        </label>
+                        <label class="quiz__option" for="quiz__6-3">
+                            <input type="radio" class="quiz__ra" name="quiz__6-question" id="quiz__6-3"> Да, если будут вакантные места на бюджетной форме обучения на факультете
+                        </label>
+                    </form>
+                </div>
+                <div class="quiz-container hidden">
+                    <p class=question>
+                        Какой главный корпус НИУ ВШЭ?
+                    </p>
+                    <form class="answers">
+                        <label class="quiz__option" for="quiz__7-1">
+                            <input type="radio" class="quiz__ra" name="quiz__7-question" id="quiz__7-1"> Мясницкая, 11
+                        </label>
+                        <label class="quiz__option" for="quiz__7-2">
+                            <input type="radio" class="quiz__wa" name="quiz__7-question" id="quiz__7-2"> Мясницкая, 20
+                        </label>
+                        <label class="quiz__option" for="quiz__7-3">
+                            <input type="radio" class="quiz__wa" name="quiz__7-question" id="quiz__7-3"> Покровский бульвар, 11
+                        </label>
+                    </form>
+                </div>
+                <div class="quiz-container hidden">
+                    <p class=question>
+                        Где есть кампусы Вышки?
+                    </p>
+                    <form class="answers">
+                        <label class="quiz__option" for="quiz__8-1">
+                            <input type="radio" class="quiz__wa" name="quiz__8-question" id="quiz__8-1"> Москва, Санкт-Петербург, Великий Новгород, Пермь
+                        </label>
+                        <label class="quiz__option" for="quiz__8-2">
+                            <input type="radio" class="quiz__ra" name="quiz__8-question" id="quiz__8-2"> Москва, Санкт-Петербург, Нижний Новгород, Пермь
+                        </label>
+                        <label class="quiz__option" for="quiz__8-3">
+                            <input type="radio" class="quiz__wa" name="quiz__8-question" id="quiz__8-3"> Москва, Санкт-Петербург, Владивосток, Пермь
+                        </label>
+                    </form>
+                </div>
+                <div class="quiz-container hidden">
+                    <p class=question>
+                        В Вышке празднуют день студента?
+                    </p>
+                    <form class="answers">
+                        <label class="quiz__option" for="quiz__9-1">
+                            <input type="radio" class="quiz__wa" name="quiz__9-question" id="quiz__9-1"> Нет, мы не празднуем День студента
+                        </label>
+                        <label class="quiz__option" for="quiz__9-2">
+                            <input type="radio" class="quiz__ra" name="quiz__9-question" id="quiz__9-2"> У нас свой День Студента - День Вышки, который проходит в сентябре
+                        </label>
+                        <label class="quiz__option" for="quiz__9-3">
+                            <input type="radio" class="quiz__wa" name="quiz__9-question" id="quiz__9-3"> Да, как и везде 25 января
+                        </label>
+                    </form>
+                </div>
+                <div class="quiz-container hidden last">
+                    <p class=question>
+                        У Вышки есть своя школа?
+                    </p>
+                    <form class="answers">
+                        <label class="quiz__option" for="quiz__10-1">
+                            <input type="radio" class="quiz__wa" name="quiz__10-question" id="quiz__10-1"> Нет, есть только университет
+                        </label>
+                        <label class="quiz__option" for="quiz__10-2">
+                            <input type="radio" class="quiz__ra" name="quiz__10-question" id="quiz__10-2"> Да, учиться в Вышке, а именно в Лицее НИУ ВШЭ можно с 8 класса
+                        </label>
+                        <label class="quiz__option" for="quiz__10-3">
+                            <input type="radio" class="quiz__wa" name="quiz__10-question" id="quiz__10-3"> Да, ещё есть детский сад
+                        </label>
+                    </form>
+                </div>
+            </section>
+
+            <!--Девятое задание-->
+            <section class="task-container task-description hidden">
+                <div class="task-description__flex-wrapper">
+                    <h2 class="task-description__heading">
+                         3,49
+                    </h2>
+                    <div class="task-description__text">
+                        <p>
+                            «Немного не дотянул» — и такое слышат вышкинцы перед экзаменами, получая страшный накоп «3,49». Разберемся и с другими вышкинскими цифрами, но помни — попыток всего три! 
+                        </p>
+                        <p class="task-description__user-points">
+                             Твои текущие баллы: <span class="user-points"></span>
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <section class="task-container container-9 hidden">
+                <div class="container-9__flex-wrapper">
+                    <ul class="container-9__task-list">
+                        <li class="container-9__task">
+                            <p class="container-9__task-question">
+                                Сколько учебных корпусов в Вышке?
+                            </p>
+                            <input class="container-9__range" id="0" type="range" min="1" max="50">
+                            <span class="container-9__range-value"></span>
+                        </li>
+                        <li class="container-9__task">
+                            <p class="container-9__task-question">
+                                Сколько зданий Вышки существует?
+                            </p>
+                            <input class="container-9__range" id="1" type="range" min="1" max="100">
+                            <span class="container-9__range-value"></span>
+                        </li>
+                        <li class="container-9__task">
+                            <p class="container-9__task-question">
+                                Размер ГАС?
+                            </p>
+                            <input class="container-9__range" id="2" type="range" min="1000" max="2000">
+                            <span class="container-9__range-value"></span>
+                        </li>
+                        <li class="container-9__task">
+                            <p class="container-9__task-question">
+                                Cредняя стоимость общежития?
+                            </p>
+                            <input class="container-9__range" id="3" type="range" min="700" max="2000">
+                            <span class="container-9__range-value"></span>
+                        </li>
+                        <li class="container-9__task">
+                            <p class="container-9__task-question">
+                                Cколько в среднем стоит комплексный обед?
+                            </p>
+                            <input class="container-9__range" id="4" type="range" min="70" max="270">
+                            <span class="container-9__range-value"></span>
+                        </li>
+                        <li class="container-9__task">
+                            <p class="container-9__task-question">
+                                Сколько в среднем нужно стоять за пропуском на Шабле (в часах)?
+                            </p>
+                            <input class="container-9__range" id="5" type="range" min="1" max="12">
+                            <span class="container-9__range-value"></span>
+                        </li>
+                        <li class="container-9__task">
+                            <p class="container-9__task-question">
+                                Сколько общежитий в Вышке?
+                            </p>
+                            <input class="container-9__range" id="6" type="range" min="5" max="20">
+                            <span class="container-9__range-value"></span>
+                        </li>
+                    </ul>
+                    <button class="container-9__submit-button">Проверить себя</button>
+                </div>
+            </section>
+
+            <!--Одиннадцатое -->
+            <section class="task-container task-description hidden">
+                <div class="task-description__flex-wrapper">
+                    <h2 class="task-description__heading">
+                         Генератор отмазок от дедлайна
+                    </h2>
+                    <div class="task-description__text">
+                        <p>
+                            «Кошка домашку съела», «у нас трубу прорвало» и «вот справка от мамы» остаются в школьной жизни. Скорее генерируй свою идеальную отмазку от дедлайна! 
+                        </p>
+                        <p class="task-description__user-points">
+                             Твои текущие баллы: <span class="user-points"></span>
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <section class="task-container container-11 hidden">
+                <div class="container-11__flex-wrapper">
+                    <p class="container-11__desc">
+                        Пропустил дедлайн? Не беда! У нас есть несколько универсальных отмазок, проверенных временем.<br> Нажми "Сгенерировать" и получи свое уникальное решение проблемы!
+                    </p>
+                    <div class="container-11__result">
+                        <button class="container-11__generate">
+                            Сгенерировать
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Завершающее -->
+
+            <section class="task-container hidden container-last">
+                <div class="container-last__flex-wrapper">
+                    <p class="container-last__goodbye">
+                        <span class="congrats">Поздравляем!</span>   
+                        Ты дошел до конца квеста "Путь первака". Нажми на кнопку "Завершить", чтобы увидеть результат.
+                    </p>
+                </div>
+            </section>
+        </div>
+        <div class="main-button-container">
+            <button class="main-back">Назад</button>
+            <button class="global-finish">Завершить</button>
+            <button class="main-forward">Вперед</button>
+        </div>
+    </main>
+    <div class="popup-finish hidden">
+        <div class="popup-finish__message">
+            <p class="popup-finish__message-results">Резы</p>
+        </div>
+    </div>
+</body>
+</html>
